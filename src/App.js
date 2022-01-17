@@ -8,7 +8,9 @@ function App() {
  let [따봉, 따봉변경]=useState(0); 
 
  let [modal, modal변경] = useState(false);
- 
+
+
+
 function 제목변경(){
   let newArray= [...글제목];
   newArray[0] ='여자 코트 추천'
@@ -16,14 +18,7 @@ function 제목변경(){
 
 }
 
-function modal변경() {
-  let i = 0;
-  i+=1;
-  
-  i % 2 === 0 ? modal(false) : modal(true)
 
-
-}
 
 
  return (
@@ -33,7 +28,7 @@ function modal변경() {
         </div>
         <button onClick = {  제목변경 }>버튼</button>
         <div className='list'>
-          <h3>{ 글제목[0] } <span onClick ={ () =>{따봉변경(따봉+1); console.log(따봉)}}>👍</span>{따봉} </h3>
+          <h3>{ 글제목[0] } <span onClick ={ () =>{따봉변경(따봉+1)}}>👍</span>{따봉} </h3>
           <p>1월 16일 발행</p>
           <hr/>
         </div>
@@ -47,11 +42,22 @@ function modal변경() {
           <p>1월 16일 발행</p>
           <hr/>
         </div>
-        <button onClick = {modalShowClose()}>모달창 보이기</button>
+         
+         {
+           글제목.map(function(a){
+             return(<div className='list'>
+             <h3>{ a }</h3>
+             <p>1월 16일 발행</p>
+             <hr/>
+           </div>)
+           })
+         }
+        <button onClick={ () => {modal변경(!modal)}}>모달창 보이기</button>
+      
         {
           modal === true
           ? <Modal></Modal>
-          : null 
+          : null
         }
        
     </div>
